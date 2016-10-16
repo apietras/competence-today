@@ -1,9 +1,7 @@
 package guru.pietras;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 /**
  * Represents single lessons and contains content of each course.
@@ -11,9 +9,9 @@ import java.util.List;
  */
 @Entity
 public class Lesson {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-
 	private Long id;
 	private String name;
 	@ManyToOne
@@ -31,8 +29,7 @@ public class Lesson {
 	 */
 	@OneToMany(mappedBy="lesson")
 	private List<Attachment> attachments;
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	private DateTime publishDate;
+	private LocalDateTime publishDate;
 	public Long getId() {
 		return id;
 	}
@@ -63,10 +60,10 @@ public class Lesson {
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
 	}
-	public DateTime getPublishDate() {
+	public LocalDateTime getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(DateTime publishDate) {
+	public void setPublishDate(LocalDateTime publishDate) {
 		this.publishDate = publishDate;
 	}
 	public String getName() {
